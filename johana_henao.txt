@@ -1,0 +1,20 @@
+plsql.execute << - SQL
+--creacion de tablespace 
+CREATE TABLESPACE mid_term
+    DATAFILE 'C:\oraclexe\app\oracle\oradata\XE\johana.dbf' SIZE 20M;
+SQL
+
+plsql.execute << - SQL
+-- Creacion de perfil
+CREATE PROFILE exam LIMIT
+    FAILED_LOGIN_ATTEMPTS 2       
+    IDLE_TIME             5;
+SQL
+
+plsql.execute << - SQL
+-- Creacion de usuario
+CREATE USER ejercicios
+    IDENTIFIED BY exam
+    DEFAULT TABLESPACE mid_term
+    QUOTA UNLIMITED ON mid_term;
+SQL
